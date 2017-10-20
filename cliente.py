@@ -1,12 +1,13 @@
 import socket
 HOST = '127.0.0.1'     # Endereco IP do Servidor
-PORT = 5000            # Porta que o Servidor esta
+PORT = 80            # Porta que o Servidor esta
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+msg = raw_input()
+#comandos = msg.split(" ")
+#if len(comandos) == 3:
+#    PORT = int(comandos[2])
 dest = (HOST, PORT)
 tcp.connect(dest)
 print 'Para sair use CTRL+X\n'
-msg = raw_input()
-while msg <> '\x18':
-    tcp.send (msg)
-    msg = raw_input()
+tcp.send (msg)
 tcp.close()
