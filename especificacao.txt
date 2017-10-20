@@ -1,0 +1,35 @@
+Redes de Computadores - 2/2017
+Primeiro Trabalho prÃ¡tico
+
+O trabalho consiste em desenvolver 2 aplicaÃ§Ãµes sobre o protocolo HTTP e o
+mÃ©todo GET: Um navegador e um servidor web.
+
+O Cliente
+=========
+O navegador deverÃ¡ funcionar por linha de comando e baixar o arquivo requisitado, caso ele exista.
+Exemplo:
+$> navegador http://urldesejada Porta
+Caso o usuÃ¡rio nÃ£o informar a porta, a porta 80 serÃ¡ utilizada.
+No caso de o servidor retornar uma mensagem de erro, como o erro 404, a aplicaÃ§Ã£o deverÃ¡ informar o erro e nÃ£o salvar o documento.
+
+O Servidor
+==========
+O servidor deverÃ¡ funcionar por linha de comando informando uma pasta de arquivos e uma porta.
+Exemplo:
+servidor public_html 8080
+Ao receber uma requisiÃ§Ã£o o servidor deverÃ¡:
+a) ver se o arquivo existe na pasta, se existir, retornar o mesmo;
+b) se o arquivo nÃ£o existir, retornar mensagem de erro.
+O servidor deverÃ¡ aceitar conexÃµes de mais de um cliente (multithread).
+
+Entrega
+=======
+O trabalho deverÃ¡ ser entregue via github e apresentado em sala de aula.
+O repositÃ³rio deverÃ¡ conter:
+- README com informaÃ§Ãµes sobre o trabalho
+- LICENSE
+- CÃ³digo fonte
+- Script para compilaÃ§Ã£o / execuÃ§Ã£o
+A apresentaÃ§Ã£o serÃ¡ apenas a execuÃ§Ã£o dos programas com explicaÃ§Ãµes sobre sua implementaÃ§Ã£o e nÃ£o serÃ¡ necessÃ¡rio
+
+AtenÃ§Ã£o: A implementaÃ§Ã£o deverÃ¡ ser feita sobre a API de sockets e nÃ£o utilizar APIs prontas.
