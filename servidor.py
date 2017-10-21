@@ -1,16 +1,22 @@
 import socket
 import thread
+import sys
+try:
+    pasta = sys.argv[1]
+    PORT = int(sys.argv[2])
+except:
+    print "Falta argumentos para o servidor"
+    sys.exit(0)
 
 HOST = '0.0.0.0'              # Endereco IP do Servidor
-PORT = 80            # Porta que o Servidor esta
 def transferenciaArquivo(con,endereco):
     try:
-        arq = open(endereco,'r')
+        arq = open(pasta + "/" + endereco,'r')
         dado = arq.read()
         con.send(dado)
         arq.close()
     except:
-        dado = "ERROR 404 \n FILE NOT FOUND"
+        dado = "404"
         con.send(dado)
 
 def abstracaoComandos(con,msg):
@@ -42,6 +48,7 @@ tcp.listen(1)
 
 while True:
     con, cliente = tcp.accept()
+    print con
     thread.start_new_thread(conectado, tuple([con, cliente]))
 
 tcp.close()
