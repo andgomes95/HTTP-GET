@@ -10,4 +10,6 @@ dest = (HOST, PORT)
 tcp.connect(dest)
 print 'Para sair use CTRL+X\n'
 tcp.send (msg)
+palavra = tcp.recv(4096)
+print palavra
 tcp.close()

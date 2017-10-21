@@ -1,17 +1,25 @@
 import socket
 import thread
 
-HOST = ''              # Endereco IP do Servidor
+HOST = '0.0.0.0'              # Endereco IP do Servidor
 PORT = 80            # Porta que o Servidor esta
-def transferenciaArquivo(endereco):
-    print endereco
-def abstracaoComandos(msg):
+def transferenciaArquivo(con,endereco):
+    try:
+        arq = open(endereco,'r')
+        dado = arq.read()
+        con.send(dado)
+        arq.close()
+    except:
+        dado = "ERROR 404 \n FILE NOT FOUND"
+        con.send(dado)
+
+def abstracaoComandos(con,msg):
     print msg
     comandos = msg.split(" ")
-    if comandos[0] != "navegador":
+    if comandos[0] != "GET":
         print "Funcao nao implementada"
     else:
-        transferenciaArquivo(msg[1])
+        transferenciaArquivo(con,comandos[1])
 
 def conectado(con, cliente):
     print 'Conectado por', cliente
@@ -19,7 +27,7 @@ def conectado(con, cliente):
     while True:
         msg = con.recv(1024)
         if not msg: break
-        abstracaoComandos(msg)
+        abstracaoComandos(con,msg)
 
     print 'Finalizando conexao do cliente', cliente
     con.close()
