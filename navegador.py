@@ -33,14 +33,14 @@ try:
         print "Funcao nao implementada"
     else:
         tipo = msg.split(".")
-        tipo2 = tipo[-1].split(" ")
+        tipo2 = tipo[1].split(" ")
         arq = open("saida."+tipo2[0],'w')
         arq.write(dado)
         arq.close()
     tcp.close()
 except:
     arq = open("404.html",'r')
-    arq1 = open("page.html",'w')
+    arq1 = open("saida.html",'w')
     dado = arq.read()
     arq1.write(dado)
     arq.close()
