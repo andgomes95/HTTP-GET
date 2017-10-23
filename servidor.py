@@ -29,7 +29,6 @@ def abstracaoComandos(con,msg):
         dado = "Funcao nao implementada"
         con.send(dado)
     else:
-        print comandos
         transferenciaArquivo(con,comandos[1])
 
 def conectado(con, cliente):

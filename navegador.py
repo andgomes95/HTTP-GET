@@ -32,7 +32,9 @@ try:
     if dado == "Funcao nao implementada":
         print "Funcao nao implementada"
     else:
-        arq = open("page.html",'w')
+        tipo = msg.split(".")
+        tipo2 = tipo[-1].split(" ")
+        arq = open("saida."+tipo2[0],'w')
         arq.write(dado)
         arq.close()
     tcp.close()
