@@ -26,7 +26,7 @@ except:
 
 try:
     msg = raw_input()
-    msg = msg + " \nConnection: close \nAccept-language: br"
+    msg = msg + " \nConnection: close \nUser-Agent: Mozilla/5.0 \nAccept-language: br"
     tcp.send (msg)
     dado = tcp.recv(1048576)
     if dado == "Funcao nao implementada":
