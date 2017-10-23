@@ -6,21 +6,27 @@ if len(sys.argv) == 2:
 else:
     PORT = 80            # Porta que o Servidor esta
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-msg = raw_input()
+
 #comandos = msg.split(" ")
 #if len(comandos) == 3:
 #    PORT = int(comandos[2])
 try:
     dest = (HOST, PORT)
     tcp.connect(dest)
+    msg = raw_input()
     tcp.send (msg)
     dado = tcp.recv(1048576)
-    if dado == "404":
-        print "ERROR 404 \n NOT FOUND"
+    if dado == "Funcao nao implementada":
+        print "Funcao nao implementada"
     else:
         arq = open("page.html",'w')
         arq.write(dado)
         arq.close()
-        tcp.close()
+    tcp.close()
 except:
-    print "ERROR 500\n\nINTERNAL SERVER ERROR"
+    arq = open("500.html",'r')
+    arq1 = open("page.html",'w')
+    dado = arq.read()
+    arq1.write(dado)
+    arq.close()
+    tcp.close()

@@ -16,14 +16,18 @@ def transferenciaArquivo(con,endereco):
         con.send(dado)
         arq.close()
     except:
-        dado = "404"
+        arq = open("404.html",'r')
+        dado = arq.read()
         con.send(dado)
+        arq.close()
+
 
 def abstracaoComandos(con,msg):
     print msg
     comandos = msg.split(" ")
     if comandos[0] != "GET":
-        print "Funcao nao implementada"
+        dado = "Funcao nao implementada"
+        con.send(dado)
     else:
         transferenciaArquivo(con,comandos[1])
 
@@ -48,7 +52,6 @@ tcp.listen(1)
 
 while True:
     con, cliente = tcp.accept()
-    print con
     thread.start_new_thread(conectado, tuple([con, cliente]))
 
 tcp.close()
