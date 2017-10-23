@@ -12,9 +12,21 @@ else:
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
+    HOST = socket.gethostbyname(HOST)
     dest = (HOST, PORT)
     tcp.connect(dest)
+except:
+    arq = open("500.html",'r')
+    arq1 = open("page.html",'w')
+    dado = arq.read()
+    arq1.write(dado)
+    arq.close()
+    tcp.close()
+    sys.exit()
+
+try:
     msg = raw_input()
+    msg = msg + " \nConnection: close \nUser-agent: Mozilla/4.0 \nAccept-language: br"
     tcp.send (msg)
     dado = tcp.recv(1048576)
     if dado == "Funcao nao implementada":
@@ -25,7 +37,7 @@ try:
         arq.close()
     tcp.close()
 except:
-    arq = open("500.html",'r')
+    arq = open("404.html",'r')
     arq1 = open("page.html",'w')
     dado = arq.read()
     arq1.write(dado)
