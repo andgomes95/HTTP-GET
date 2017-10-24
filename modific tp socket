@@ -1,0 +1,9 @@
+- Entender como funciona o protocolo corretamente (livro)
+- tentar baixar via socket um http
+- tentar enviar corretamente .html via server para mozilla firefox
+- fazer receber mais de 1024k
+- Passar diretorio completo, ao inves de dar um GET digitando
+- excluir o http:// ou https:// do noem do navegador
+- passar fazer navegador aceitar http:// Porta 80 ou https:// Porta 443 (verificar qual porta)
+- fazer mapeamento dos diretórios, printando em uma lista estatica -> https://pythonhelp.wordpress.com/2012/08/20/glob-listando-arquivos-de-diretorios/
+- baixar wireshark

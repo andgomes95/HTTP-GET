@@ -26,7 +26,7 @@ except:
 
 try:
     msg = raw_input()
-    msg = msg + " \nConnection: close \nUser-Agent: Mozilla/5.0 \nAccept-language: br"
+    msg = msg + " HTTP/1.1 \nHost: "+HOST+":"+PORT+" \nUser-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0 \nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 \nAccept-Language: pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3 \nAccept-Encoding: gzip, deflate \nConnection: keep-alive \nKeep-Alive: 1000 \nUpgrade-Insecure-Requests: 1"
     tcp.send (msg)
     dado = tcp.recv(1048576)
     if dado == "Funcao nao implementada":
