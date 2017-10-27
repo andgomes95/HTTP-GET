@@ -1,0 +1,23 @@
+.copyright {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #9C4545;
+}
+.text11b_pink {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #F69191;
+}
+.text11_white {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+.link11b_white {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
