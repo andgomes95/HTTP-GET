@@ -33,7 +33,7 @@ def criacaoCabecalhoServer(state,endereco,con):
         diretorio = []
         diretorio = listagemArquivosSistema(diretorio)
         if not endereco in diretorio and endereco != "/":
-            cabecalhoHTTP(200,"/404.html",con)
+            cabecalhoHTTPError(404,"/404.html",con)
         elif endereco[-1] == "/":
             print endereco
             arq = open(pasta+"/dir.html",'w')
@@ -45,8 +45,8 @@ def criacaoCabecalhoServer(state,endereco,con):
             cabecalhoHTTP(200,"/dir.html",con)
         else:
             cabecalhoHTTP(state,endereco,con)
-    elif state == "400":
-        print "oho"
+    elif state == "500":
+        cabecalhoHTTP500(con)
 def contentType(arq):
     ext = arq.split(".")
     if ext[-1] == "html":
@@ -59,6 +59,8 @@ def contentType(arq):
         return "image/png"
     elif ext[-1] == "gif":
         return "image/gif"
+    elif ext[-1] == "ico":
+        return "image/ico"
     elif ext[-1] == "css":
         return "text/css"
 def cabecalhoHTTP(state,endereco,con):
@@ -68,7 +70,20 @@ def cabecalhoHTTP(state,endereco,con):
     dado = arq.read()
     con.send(saida+dado)
     con.close()
-
+def cabecalhoHTTPError(state,endereco,con):
+    saida = "HTTP/1.1 "+str(state)+" Not Found\r\nContent-Type: "+ contentType(endereco)+"\r\n\r\n"
+    print "\n\n"+saida+"\n\n"
+    arq = open(pasta+endereco,'r')
+    dado = arq.read()
+    con.send(saida+dado)
+    con.close()
+def cabecalhoHTTP500(con):
+    saida = "HTTP/1.1 "+"500"+" Internal Server Error\r\nContent-Type: "+ contentType("/500.html")+"\r\n\r\n"
+    print "\n\n"+saida+"\n\n"
+    arq = open(pasta+"/500.html",'r')
+    dado = arq.read()
+    con.send(saida+dado)
+    con.close()
 def tratamentoListaArquivos(diretorio):
     for i in range(0,len(diretorio)):
         diretorio[i] = "/"+diretorio[i]
@@ -89,7 +104,7 @@ def tratamentoCabecalhoCliente(msg):
         print endereco
         return state,endereco
     else:
-        state = "400"
+        state = "500"
         return state,endereco
 
 def conectado(con, cliente):
