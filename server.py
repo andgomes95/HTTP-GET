@@ -38,13 +38,12 @@ def criacaoCabecalhoServer(state,endereco,con):
             print endereco
             arq = open(pasta+"/dir.html",'w')
             diretorio = os.listdir(pasta+endereco)
-            arq.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"/><title> Diretorio: "+endereco+"</title></head><body>")
+            arq.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"/><title> Diretorio: "+endereco+"</title></head><body><h1>"+endereco+"</h1>")
             arq.writelines(printArquivo(diretorio))
             arq.write("</body></html>")
             arq.close()
             cabecalhoHTTP(200,"/dir.html",con)
         else:
-            print "deu bom"
             cabecalhoHTTP(state,endereco,con)
     elif state == "400":
         print "oho"
@@ -64,7 +63,7 @@ def contentType(arq):
         return "text/css"
 def cabecalhoHTTP(state,endereco,con):
     lenght = os.path.getsize(pasta+endereco)
-    saida = "HTTP/1.1 "+str(state)+" OK\nContent-Type: "+ contentType(endereco)+"\nContent-Length :"+str(lenght)+"\n\n"
+    saida = "HTTP/1.1 "+str(state)+" OK\r\nContent-Type: "+ contentType(endereco)+"\r\nContent-Length :"+str(lenght)+"\r\n\r\n"
     arq = open(pasta+endereco,'r')
     dado = arq.read()
     con.send(saida+dado)
@@ -98,12 +97,12 @@ def conectado(con, cliente):
 
     while True:
         msg = con.recv(4096)
-        if not msg: break
+
         print cliente
         print msg
         state,endereco = tratamentoCabecalhoCliente(msg)
         criacaoCabecalhoServer(state,endereco,con)
-
+        break
     print 'Finalizando conexao do cliente', cliente
     con.close()
     thread.exit()
