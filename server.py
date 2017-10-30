@@ -65,7 +65,7 @@ def contentType(arq):
         return "text/css"
 def cabecalhoHTTP(state,endereco,con):
     lenght = os.path.getsize(pasta+endereco)
-    saida = "HTTP/1.1 "+str(state)+" OK\r\nContent-Type: "+ contentType(endereco)+"\r\nContent-Length :"+str(lenght)+"\r\n\r\n"
+    saida = "HTTP/1.1 "+str(state)+" OK\r\nContent-Type: "+ contentType(endereco)+"\r\nContent-Length: "+str(lenght)+"\r\n\r\n"
     arq = open(pasta+endereco,'r')
     dado = arq.read()
     con.send(saida+dado)
